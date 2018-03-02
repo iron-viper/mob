@@ -1,0 +1,14 @@
+Write a MYSQL SELECT statement that displays the ​ name​ of each dinosaur and the ​ Total
+number of visitors​ . Order The output by total number of visitors from most to least.
+
+=========================================================================================
+
+SELECT
+	d.name,
+	v.total
+FROM
+	dinosaurs as d
+INNER JOIN visitors as v ON
+	d.dinosaur_Id = v.dinosaur_id
+ORDER BY
+	v.total DESC

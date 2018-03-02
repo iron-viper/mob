@@ -1,0 +1,34 @@
+Write a MYSQL Select statement that includes data from both parks that displays the ​ name
+and the ​ Total number of visitors; ​ grouping by dinosaurs with the same name and adding
+the total number of visitors together for that dinosaur. Order by name.
+
+=========================================================================================
+
+SELECT
+	name,
+	SUM( total )
+FROM
+	(
+		(
+			SELECT
+				d.name,
+				v.total
+			FROM
+				dinosaurs as d
+			INNER JOIN visitors as v ON
+				d.dinosaur_Id = v.dinosaur_id
+		)
+UNION ALL(
+		SELECT
+			d2.name,
+			v2.total
+		FROM
+			dinosaurs_island as d2
+		INNER JOIN visitors_island as v2 ON
+			d2.dinosaur_Id = v2.dinosaur_id
+	)
+	) as t
+GROUP BY
+	t.name
+ORDER BY
+	t.name ASC

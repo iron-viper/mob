@@ -1,0 +1,21 @@
+Write a MYSQL Select statement that displays the ​ name, dinosaur ids ​ and ​ Total number
+of visitors ​ grouping by dinosaurs with the same name and adding the total number of
+visitors together for that dinosaur. Order by total number of visitors from most to least.
+
+=========================================================================================
+
+SELECT
+	d.name,
+	GROUP_CONCAT(
+		d.dinosaur_Id
+	ORDER BY
+		d.dinosaur_Id ASC
+	) as 'dinosaur ids',
+	SUM( v.total ) as 'Total number of visitors'
+FROM
+	dinosaurs as d
+INNER JOIN visitors as v ON
+	d.dinosaur_Id = v.dinosaur_id
+GROUP BY
+	d.name
+ORDER BY SUM( v.total ) DESC

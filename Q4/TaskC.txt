@@ -1,0 +1,28 @@
+Write a MYSQL Select statement that displays the ​ name, dinosaur_id ​ and ​ Total number of
+visitors​ for dinosaurs with more than the average number of visitors per dinosaur. The
+average number of visitors can be calculated by dividing the total number of visitors by the
+total number of dinosaurs. Eg. (10 + 8 + 6 + 3 +1) / 5, however the number of visitors and
+number of dinosaurs will change so will need to be written programmatically. Order by total
+number of visitors from most to least, do not group by name.
+
+=========================================================================================
+
+SELECT
+	d.name,
+	d.dinosaur_Id,
+	v.total as 'Total number of visitors'
+FROM
+	dinosaurs as d
+INNER JOIN visitors as v ON
+	d.dinosaur_Id = v.dinosaur_id
+where
+	v.total > (
+		SELECT
+			SUM( v1.total )/ COUNT( d1.dinosaur_Id )
+		FROM
+			dinosaurs as d1
+		INNER JOIN visitors as v1 ON
+			d1.dinosaur_Id = v1.dinosaur_id
+	)
+ORDER BY
+	v.total DESC
