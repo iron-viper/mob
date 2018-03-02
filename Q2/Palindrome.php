@@ -33,7 +33,7 @@ class Palindrome
 
 $palindrome = new Palindrome();
 
-$arrayFoCheck = [
+$arrayForCheck = [
     "racecar",
     "a man a plan a canal Panama.",
     "R2D2",
@@ -43,7 +43,7 @@ $arrayFoCheck = [
 ];
 
 try {
-    foreach ($arrayFoCheck as $string) {
+    foreach ($arrayForCheck as $string) {
         echo $string . " => " . ($palindrome->check($string) ? "true" : "false") . PHP_EOL;
     }
 } catch (\Exception $e) {
