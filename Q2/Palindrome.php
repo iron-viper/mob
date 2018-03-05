@@ -14,7 +14,7 @@ class Palindrome
      * @return bool
      * @throws \InvalidArgumentException
      */
-    public function check(string $string): mixed
+    public static function check(string $string): bool
     {
         $string = strtolower($string);
         $string = preg_replace('/[^\w]/', '', $string);
@@ -31,8 +31,6 @@ class Palindrome
 
 // Realisation
 
-$palindrome = new Palindrome();
-
 $arrayForCheck = [
     "racecar",
     "a man a plan a canal Panama.",
@@ -44,7 +42,7 @@ $arrayForCheck = [
 
 try {
     foreach ($arrayForCheck as $string) {
-        echo $string . " => " . ($palindrome->check($string) ? "true" : "false") . PHP_EOL;
+        echo $string . " => " . (Palindrome::check($string) ? "true" : "false") . PHP_EOL;
     }
 } catch (\Exception $e) {
     echo "Error:" . $e->getMessage();
